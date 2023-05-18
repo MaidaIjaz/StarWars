@@ -14,6 +14,8 @@ export default function PeopleDetail(props) {
   const router = useRouter();
   let personId = router.query.personId - 1;
   if (personId > 16) personId = personId - 1;
+
+  // If call fails load it from context
   const [people, setPeople] = useState(
     props.starWarsPeople[personId] ?? persons[personId]
   );
@@ -34,9 +36,7 @@ export default function PeopleDetail(props) {
   let residents = extractResidents(props.planet.residents);
   return (
     <div className="bg-black">
-      {/* Header */}
       <Headers />
-
       <div className="py-6 super-container lg:py-10">
         <PeopleDescription
           people={people}
@@ -49,7 +49,7 @@ export default function PeopleDetail(props) {
   );
 }
 
-function getAllStarwarsPeople() {
+function getAllStarWarsPeople() {
   let people = [];
   // first page
   return axios("https://swapi.dev/api/people/")
@@ -59,7 +59,7 @@ function getAllStarwarsPeople() {
       return response.data.count;
     })
     .then((count) => {
-      // exclude the first request
+      // Store number of pages
       const numberOfPagesLeft = Math.ceil((count - 1) / 10);
 
       let promises = [];
@@ -77,7 +77,7 @@ function getAllStarwarsPeople() {
       );
       return people;
     })
-    .catch((error) => console.log("Properly handle your exception here"));
+    .catch((error) => console.log(error));
 }
 
 function getStarWarsPlanet(url) {
@@ -98,16 +98,15 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const starWarsPeople = (await getAllStarwarsPeople()) ?? [];
+  const starWarsPeople = (await getAllStarWarsPeople()) ?? [];
 
   let arrayId = personId - 1;
   if (arrayId > 16) arrayId = arrayId - 1;
   const homeworld = starWarsPeople[arrayId]?.homeworld;
-  console.log(homeworld);
   const planet = (await getStarWarsPlanet(homeworld)) ?? [];
 
   return {
-    // pass data to actual component by returning props
+    // Pass data to actual component by returning props
     props: {
       starWarsPeople,
       planet,

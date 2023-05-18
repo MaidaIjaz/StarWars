@@ -1,26 +1,27 @@
 import React, { useContext, useState, useEffect } from "react";
 import { PersonContext } from "../context/PersonContext";
-import Sort from "./Sort";
-import { FunnelIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import {
+  FunnelIcon,
+  XMarkIcon,
+  ArchiveBoxXMarkIcon,
+} from "@heroicons/react/24/solid";
 
 function Filters() {
   const INITIAL_OPTIONS = ["height", "mass", "birth_year"];
   const operatorMap = {
-    "Greater than" : ">",
-    "Less than" : "<",
-    "Equal to" : "=="
-  }
+    "Greater than": ">",
+    "Less than": "<",
+    "Equal to": "==",
+  };
 
-  const { filterPersonsByName, filterPersonsByColumn } =
-    useContext(PersonContext);
+  const { filterPersonsByColumn } = useContext(PersonContext);
   const [columnOptions, setColumnOption] = useState(INITIAL_OPTIONS);
   const [filterState, setFilterState] = useState({
-    name: "",
     column: INITIAL_OPTIONS[0],
     operator: "Greater than",
     value: "0",
   });
-  const { name, column, operator, value } = filterState;
+  const { column, operator, value } = filterState;
   const [filtersDone, setFiltersDone] = useState([]);
 
   const handleChange = ({ target }) => {
@@ -31,13 +32,12 @@ function Filters() {
     }));
   };
 
-  const handleDeleteFilter = ({ target: {id} }) => {
-    console.log('id', id, filtersDone)
+  const handleDeleteFilter = ({ target: { id } }) => {
     const attFiltersDone = filtersDone.filter(
       (_filter, index) => Number(index) !== Number(id)
     );
     filterPersonsByColumn(attFiltersDone, true);
-    
+
     setColumnOption((prevState) => {
       const { column: filterType } = filtersDone[id];
       const attColumnOptions = [filterType, ...prevState];
@@ -72,21 +72,16 @@ function Filters() {
     }));
   }, [columnOptions]);
 
-  useEffect(() => {
-    filterPersonsByName(name);
-  }, [filterPersonsByName, name]);
-
   return (
     <section>
-      <form className="text-white flex flex-items mx-16 my-4 flex flex-col md:flex-row">
+      <form className="text-white flex flex-items mx-16 my-4 flex-col md:flex-row">
         <label htmlFor="column-filter">
-          {/* <span>Filter</span> */}
           <div className="flex items-center text-black h-12 mx-4 my-4 rounded-md flex-grow bg-yellow-400 hover:bg-yellow-500">
             <select
               className="p-2 h-full w-full flex-grow flex-shrink rounded-md focus:outline-none"
               id="column-filter"
               name="column"
-              data-testid="column-filter"
+              data-testId="column-filter"
               defaultValue={column}
               onChange={handleChange}
             >
@@ -100,13 +95,12 @@ function Filters() {
         </label>
 
         <label htmlFor="operator-filter">
-          {/* <span>Is</span> */}
           <div className="flex items-center text-black h-12 mx-4 my-4 rounded-md flex-grow bg-yellow-400 hover:bg-yellow-500">
             <select
               className="p-2 h-full w-full flex-grow flex-shrink rounded-md focus:outline-none"
               id="operator-filter"
               name="operator"
-              data-testid="comparison-filter"
+              data-testId="comparison-filter"
               value={operator}
               onChange={handleChange}
             >
@@ -123,56 +117,60 @@ function Filters() {
               className="p-2 h-full w-full flex-grow flex-shrink rounded-md focus:outline-none"
               id="value-filter"
               type="number"
-              data-testid="value-filter"
+              data-testId="value-filter"
               value={value}
               name="value"
               onChange={handleChange}
             />
           </div>
         </label>
-        
+
         <button
-          className="w-12 rounded-md h-12 p-4 self-center bg-yellow-400 hover:bg-yellow-500"
+          className="w-12 rounded-md h-12 p-4 self-center text-black bg-yellow-400 hover:bg-yellow-500"
           type="button"
           disabled={columnOptions.length == 0}
-          data-testid="button-filter"
+          data-testId="button-filter"
           onClick={handleFilter}
         >
           <FunnelIcon />
         </button>
-      
 
-      <section className="ml-2 self-center  flex flex-col md:flex-row">
-        {filtersDone.map((filter, index) => {
-          const {
-            column: filterColumn,
-            operator: filterOperator,
-            value: filterValue,
-          } = filter;
-          console.log('index', index)
-          return (
-            <div key={index} data-testid="filter" className="flex flex-row text-white bg-gray-600 m-1 p-1 rounded-md">
-              <button
-              className="w-5 h-5 self-center hover:bg-yellow-400"
-                onClick={handleDeleteFilter}
-                type="button"
-                id={index}
-                data-testid="delete-filter"
+        <section className="ml-2 self-center  flex flex-col md:flex-row">
+          {filtersDone.map((filter, index) => {
+            const {
+              column: filterColumn,
+              operator: filterOperator,
+              value: filterValue,
+            } = filter;
+            return (
+              <div
+                key={index}
+                data-testId="filter"
+                className="flex flex-row text-white bg-gray-600 m-1 p-1 rounded-md"
               >
-                <XMarkIcon className="pointer-events-none" />
-              </button>
-              <span>{`${filterColumn} ${operatorMap[filterOperator]} ${filterValue}`}</span>
-            </div>
-          );
-        })}
-        <button
-          data-testid="button-remove-filters"
-          type="button"
-          onClick={removeAllFilters}
-        >
-          Remove Filters
-        </button>
-      </section>
+                <button
+                  className="w-5 h-5 self-center hover:bg-yellow-400"
+                  onClick={handleDeleteFilter}
+                  type="button"
+                  id={index}
+                  data-testId="delete-filter"
+                >
+                  <XMarkIcon className="pointer-events-none" />
+                </button>
+                <span className="self-center">{`${filterColumn} ${operatorMap[filterOperator]} ${filterValue}`}</span>
+              </div>
+            );
+          })}
+
+          <button
+            className="w-12 rounded-md h-12 p-4 mx-2 text-black self-center bg-yellow-400 hover:bg-yellow-500"
+            data-testid="button-remove-filters"
+            type="button"
+            onClick={removeAllFilters}
+          >
+            <ArchiveBoxXMarkIcon />
+          </button>
+        </section>
       </form>
     </section>
   );

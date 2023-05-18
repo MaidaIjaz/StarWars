@@ -1,15 +1,6 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-} from "react";
+import React, { createContext, useState, useMemo, useCallback } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
 import Fuse from "fuse.js";
-
-// import getPlanets from '../helpers÷/planetsApi';
 
 export const PersonContext = createContext();
 function Provider({ children }) {
@@ -42,6 +33,7 @@ function Provider({ children }) {
   };
 
   const filterPersonsByColumn = useCallback(
+    // In case of delete it is true
     (filtersDone, remove = false) => {
       if (filtersDone.length > 0) {
         const personsToFilter = remove ? persons : filteredPersons;

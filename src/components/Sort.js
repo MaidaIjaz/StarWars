@@ -37,7 +37,7 @@ function Sort() {
             className="p-2 h-full w-full flex-grow flex-shrink rounded-l-md focus:outline-none"
             name="column"
             id="sort-column"
-            data-testid="column-sort"
+            data-testId="column-sort"
             onChange={handleChange}
             value={column}
           >
@@ -57,9 +57,5 @@ function Sort() {
     </form>
   );
 }
-
-Sort.propTypes = {
-  INITIAL_OPTIONS: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default Sort;

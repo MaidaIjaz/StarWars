@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-// import Modal from 'components/modal';
-// import Table from 'components/table';
 import RowInfo from "./RowInfo";
 import Image from "next/image";
-import Link from "next/link";
 import PersonFeed from "./PersonFeed";
-import axios from "axios";
+
 const PeopleDescription = ({ people, id, planet, residents }) => {
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <div className="flex flex-col content-between md:flex-row items-center md:justify-between p-16 mx-auto">
+      <div className="flex flex-col content-between md:flex-row items-center md:justify-between px-16 pb-16 mx-auto">
         <div className="flex overflow-x-auto h-full w-4/12 rounded-lg">
           <Image
             className="h-full w-full object-contain"
