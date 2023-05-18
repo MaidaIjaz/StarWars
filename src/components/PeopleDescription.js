@@ -23,7 +23,7 @@ const PeopleDescription = ({ people, id, planet, residents }) => {
         </div>
         <div className="w-full ml-10 mt-10 overflow-hidden bg-amazon_blue shadow sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
-            <h1 className="text-lg font-medium leading-6 text-white">
+            <h1 className="leading-6 text-white font-medium border-solid border-yellow-400 border-b-2 text-3xl inline">
               {people?.name}
             </h1>
           </div>
@@ -49,6 +49,9 @@ const PeopleDescription = ({ people, id, planet, residents }) => {
         </div>
       </div>
 
+      <h2 className="text-white mx-16 font-medium border-solid border-yellow-400 border-b-2 text-3xl inline">
+        Other Residents of {planet?.name}
+      </h2>
       <PersonFeed starWarsPeople={residents} smallTiles />
     </>
   );
