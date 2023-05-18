@@ -14,7 +14,7 @@ import Fuse from "fuse.js";
 export const PersonContext = createContext();
 function Provider({ children }) {
   const [persons, setPersons] = useState([]);
-  const [filteredPersons, setFilteredPersons] = useState([]);
+  const [filteredPersons, setFilteredPersons] = useState(undefined);
 
   const settingPersons = (receivedPersons) => {
     setPersons(receivedPersons);

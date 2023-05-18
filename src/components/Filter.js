@@ -151,7 +151,7 @@ function Filters() {
           } = filter;
           console.log('index', index)
           return (
-            <div key={index} data-testid="filter" className="flex flex-row text-white bg-gray-600 m-1">
+            <div key={index} data-testid="filter" className="flex flex-row text-white bg-gray-600 m-1 p-1 rounded-md">
               <button
               className="w-5 h-5 self-center hover:bg-yellow-400"
                 onClick={handleDeleteFilter}

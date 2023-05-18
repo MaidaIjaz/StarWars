@@ -1,11 +1,9 @@
 import { useContext, useEffect } from "react";
 import { PersonContext } from "../context/PersonContext";
 import Head from "next/head";
-import Banner from "../components/Banner";
 import Headers from "../components/Headers";
 import ProductFeed from "../components/ProductFeed";
 import Search from "../components/Search";
-import Table from "../components/Table";
 import Filter from "../components/Filter";
 import axios from "axios";
 import Sort from "../components/Sort";
@@ -18,9 +16,9 @@ export default function Home(props) {
   useEffect(() => {
     if (persons.length === 0) settingPersons(props.starWarsPeople);
   }, []);
-
+  console.log(filteredPersons)
   return (
-    <div className="bg-black">
+    <div className="bg-black min-h-screen">
       <Head>
         <title>Star Wars</title>
       </Head>
@@ -33,12 +31,7 @@ export default function Home(props) {
        <Sort/>
         </div>
         <Filter />
-        {/* <Table /> */}
-        {/* Banner */}
-        {/* <Banner /> */}
-        {/* Product feed */}
-
-        <ProductFeed starWarsPeople={filteredPersons ?? []} />
+        <ProductFeed starWarsPeople={filteredPersons ?? props.starWarsPeople ?? []} />
       </main>
     </div>
   );

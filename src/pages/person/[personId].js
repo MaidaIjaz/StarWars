@@ -1,7 +1,6 @@
 import React, { useContext, useCallback, useEffect, useState } from "react";
 import { PersonContext } from "../../context/PersonContext";
 // import { useParams, useNavigate } from 'react-router-dom';
-import BackButton from "../../components/BackButton";
 import PeopleDescription from "../../components/PeopleDescription";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -24,7 +23,7 @@ export default function PeopleDetail(props) {
 
 const extractResidents = (residents) =>{
     let residentArray = [];
-    residents.forEach(resident => {
+    residents?.forEach(resident => {
     let personId =  parseInt(resident.match(/\d/g).join(""))   
     if ( parseInt(router.query.personId) !== personId)  {
    personId = personId -1;
@@ -126,9 +125,9 @@ export async function getServerSideProps(context) {
 
   let arrayId = personId - 1;
   if (arrayId > 16) arrayId = arrayId - 1;
-  const {homeworld} = starWarsPeople[arrayId]
+  const homeworld = starWarsPeople[arrayId]?.homeworld
   console.log(homeworld)
-  const planet = await getStarWarsPlanet(homeworld);
+  const planet = await getStarWarsPlanet(homeworld) ?? [];
   // console.log("starwarsPeople", products);
   return {
     // pass data to actual component by returning props
