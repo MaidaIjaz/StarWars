@@ -16,7 +16,7 @@ For better UI/UX experience I have also added the following functionalities:
 
 * Scroll restoration
 * Fuzzy search
-* Fast rendoring through SSR
+* Fast rendering through SSR
 * Mobile and Desktop responsive
 
 Using SSR and Image components of NextJS provides us with the best performance. Google PageSpeed Insights give the following results:
