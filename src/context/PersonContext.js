@@ -21,16 +21,6 @@ function Provider({ children }) {
     setFilteredPersons(receivedPersons);
   };
 
-  //   const filterPersonsByName = useCallback(
-  //     (name) => {
-  //       const filteredPlanetsByName = persons.filter((planet) =>
-  //         planet.name.toLowerCase().includes(name.toLowerCase())
-  //       );
-  //       setFilteredPersons(filteredPlanetsByName);
-  //     },
-  //     [persons]
-  //   );
-
   // fuzzy search
   const fuse = new Fuse(persons, {
     keys: ["name"],
@@ -48,8 +38,8 @@ function Provider({ children }) {
   );
 
   const extractFloat = (str) => {
-    return parseFloat(str.replace(/,/g, ''));
-  }
+    return parseFloat(str.replace(/,/g, ""));
+  };
 
   const filterPersonsByColumn = useCallback(
     (filtersDone, remove = false) => {
@@ -69,7 +59,7 @@ function Provider({ children }) {
                 return columnValueToCompare === valueToCompare;
             }
           });
-          
+
           setFilteredPersons(filteredPersonsByColumn);
         });
       } else {
@@ -81,9 +71,9 @@ function Provider({ children }) {
 
   const sortPersons = useCallback(
     (order) => {
-      const {column:columnString} = order;
-      const sort = columnString.split(':')[1];
-      const column = columnString.split(':')[0].toLowerCase().replace(" ", "_");
+      const { column: columnString } = order;
+      const sort = columnString.split(":")[1];
+      const column = columnString.split(":")[0].toLowerCase().replace(" ", "_");
       const filteredPersonsCopy = [...filteredPersons];
       const POSITIVE_NUMBER = 1;
       const NEGATIVE_NUMBER = -1;
@@ -101,11 +91,10 @@ function Provider({ children }) {
         }
         switch (sort) {
           case " Low to High":
-            return extractFloat(a[column])- extractFloat(b[column]);
+            return extractFloat(a[column]) - extractFloat(b[column]);
 
           default:
-            return extractFloat(b[column])- extractFloat(a[column]);
-
+            return extractFloat(b[column]) - extractFloat(a[column]);
         }
       });
       setFilteredPersons(filteredPersonsCopy);
@@ -115,7 +104,7 @@ function Provider({ children }) {
 
   const contextValue = useMemo(
     () => ({
-        persons,
+      persons,
       filteredPersons,
       filterPersonsByName,
       filterPersonsByColumn,
@@ -123,7 +112,7 @@ function Provider({ children }) {
       settingPersons,
     }),
     [
-        persons,
+      persons,
       filteredPersons,
       filterPersonsByName,
       filterPersonsByColumn,

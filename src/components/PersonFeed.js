@@ -1,7 +1,7 @@
 import React from "react";
-import Product from "./Product";
+import Person from "./Person";
 
-function ProductFeed({ starWarsPeople, smallTiles =false }) {
+function PersonFeed({ starWarsPeople, smallTiles = false }) {
   return (
     // show single product on small screen, 2 on medium and so on...
     // Overlap products with banner on medium screen
@@ -10,21 +10,23 @@ function ProductFeed({ starWarsPeople, smallTiles =false }) {
     // Fetch data from API render page on server and then deliver it to browser */}
       {/* destructuring */}
       {/* Whenever use map always include key to let it know which element belongs where in this way it renders list efficiently */}
-      {starWarsPeople.map(({ name, height, mass, birth_year, gender, homeworld, url }, index) => (
-          <Product
+      {starWarsPeople.map(
+        ({ name, height, mass, birth_year, gender, homeworld, url }, index) => (
+          <Person
             key={index}
             name={name}
             height={height}
-            mass = {mass}
+            mass={mass}
             birth_year={birth_year}
             gender={gender}
             homeworld={homeworld}
-            id={url.match(/\d/g).join("")}  
-            smallTiles = {smallTiles}
+            id={url.match(/\d/g).join("")}
+            smallTiles={smallTiles}
           />
-        ))}
+        )
+      )}
     </div>
   );
 }
 
-export default ProductFeed;
+export default PersonFeed;

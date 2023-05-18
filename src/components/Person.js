@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { StarIcon } from "@heroicons/react/24/solid";
 
 
-function Product({ name, height, mass, birth_year, gender, homeworld, id, smallTiles }) {
+function Person({ name, height, mass, birth_year, gender, homeworld, id, smallTiles }) {
   // The default value is 0, it will be used during pre-rendering and the first render in the browser (hydration)
 
   return (
@@ -28,22 +28,9 @@ function Product({ name, height, mass, birth_year, gender, homeworld, id, smallT
       <p className="text-md my-1">Birth Year: {birth_year}</p>
       <p className="text-md my-1"> Mass: {mass}</p>
       </div>
-      {/* <h5 >{name}</h5> */}
-      
-
-      {/* <div className="flex">
-       
-    
-      </div>
-      <p className="text-xs my-1 line-clamp-2">{height}</p>
-      <p className="text-xs my-1 line-clamp-2">{birth_year}</p>
-      <p className="text-xs my-1 line-clamp-2">{gender}</p>
-      <p className="text-xs my-1 line-clamp-2">{homeworld}</p> */}
-     
-      {/* <button className="mt-auto button">Add to Basket</button> */}
     </div>
     </Link>
   );
 }
 
-export default Product;
+export default Person;

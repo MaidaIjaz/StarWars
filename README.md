@@ -1,15 +1,30 @@
-# Build Star Wars (Responsive)
+# Star Wars Website
 
-Using the code in this repository you would be able to build the responsive Amazon Product feed. 
-## Installation Steps
 
-Run following commands in your terminal:
+In this project, I used React, Tailwind CSS, and JavaScript to build the responsive frontend of Star Wars application. I used **Axios** for API calls. Here is the final link of my [deployment](https://star-wars-maidaijaz.vercel.app/).
+
+*  Displayed all the characters of Star Wars on the home page.
+*  Implemented **Search** functionality on the characters displayed on home page.
+*  Implemented  **Sort**, and **Filter** functionality on the characters details.
+*  Displayed character basic info, planet they're from, and links to other characters from the same planet in a separate page.
+*  Made home page interactive even in the absence of internet.
+*  Used the powerful tools provided by **NextJS** to implement Server-Side Rendering(**SSR**) for better website performance (**99 performance score on Google PageSpeed Insights**).
+* Build a fully responsive frontend of Star Wars using **TailwindCSS** and **React**.
+* Used **Vercel** for the final deployment of application.
+
+Using SSR and Image components of NextJS provides us with the best performance. Google PageSpeed Insights give the following results:
+
+| ![Performance Score](perf.png?raw=true "Performance Score") |
+|-|
+
+
+# Installation Steps
+
+Clone this repository, Navigate to `StarWars-main` folder and Run following commands in your terminal:
 
 1. ```npm install```
 2. ```npm run dev```
 
-You should see the following output after running the code:
 
-![Product Feed](Productfeed.png?raw=true "Product Feed")
 
-Images taken from this link: https://github.com/vieraboschkova/swapi-gallery.git
+> Character Images taken from this repository: https://github.com/vieraboschkova/swapi-gallery.git
