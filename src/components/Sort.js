@@ -13,19 +13,17 @@ const SORT_INITIAL_OPTIONS = [
 ];
 
 function Sort() {
-  const [order, setOrder] = useState({
-    column: "",
-  });
+
+  // Set initial state empty
+  const [order, setOrder] = useState("");
 
   const { sortPersons } = useContext(PersonContext);
-
+  
+  // Update state and call sort function
   const handleChange = ({ target }) => {
-    const { name: targetName, value: targetValue } = target;
-    setOrder((prevState) => ({
-      ...prevState,
-      [targetName]: targetValue,
-    }));
-    sortPersons({ column: targetValue });
+    const { value: targetValue } = target;
+    setOrder(targetValue);
+    sortPersons(targetValue);
   };
 
   const { column } = order;
@@ -40,11 +38,13 @@ function Sort() {
             data-testId="column-sort"
             onChange={handleChange}
             value={column}
-          >
+          > 
+          {/* Default text */}
             <option value="" selected disabled hidden>
               {" "}
               Sort Here
             </option>
+            {/* Sort options */}
             {SORT_INITIAL_OPTIONS.map((option, index) => (
               <option key={index} value={option}>
                 {option}

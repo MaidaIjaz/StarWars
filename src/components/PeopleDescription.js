@@ -4,9 +4,9 @@ import Image from "next/image";
 import PersonFeed from "./PersonFeed";
 
 const PeopleDescription = ({ people, id, planet, residents }) => {
-
   return (
     <>
+    {/* Display person on left and details on right (on small screen flex-col) */}
       <div className="flex flex-col content-between md:flex-row items-center md:justify-between px-16 pb-16 mx-auto">
         <div className="flex overflow-x-auto h-full w-4/12 rounded-lg">
           <Image
@@ -45,6 +45,7 @@ const PeopleDescription = ({ people, id, planet, residents }) => {
         </div>
       </div>
 
+      {/* Display planet residents */}
       <h2 className="text-white mx-16 font-medium border-solid border-yellow-400 border-b-2 text-3xl inline">
         Other Residents of {planet?.name}
       </h2>

@@ -8,9 +8,12 @@ import Headers from "../../components/Headers";
 export default function PeopleDetail(props) {
   const { settingPersons, persons } = useContext(PersonContext);
 
+  // If persons not already set, set them through props
   useEffect(() => {
     if (persons.length === 0) settingPersons(props.starWarsPeople);
   }, []);
+
+  // Get person id
   const router = useRouter();
   let personId = router.query.personId - 1;
   if (personId > 16) personId = personId - 1;
@@ -20,10 +23,12 @@ export default function PeopleDetail(props) {
     props.starWarsPeople[personId] ?? persons[personId]
   );
 
+  // Extract all residents of current person planet
   const extractResidents = (residents) => {
     let residentArray = [];
     residents?.forEach((resident) => {
       let personId = parseInt(resident.match(/\d/g).join(""));
+      // Filter current person
       if (parseInt(router.query.personId) !== personId) {
         personId = personId - 1;
         if (personId > 16) personId = personId - 1;
@@ -34,6 +39,7 @@ export default function PeopleDetail(props) {
   };
 
   let residents = extractResidents(props.planet.residents);
+
   return (
     <div className="bg-black">
       <Headers />
@@ -51,10 +57,9 @@ export default function PeopleDetail(props) {
 
 function getAllStarWarsPeople() {
   let people = [];
-  // first page
+  // Get people on first page
   return axios("https://swapi.dev/api/people/")
     .then((response) => {
-      // collect people from first page
       people = response.data.results;
       return response.data.count;
     })
@@ -70,7 +75,7 @@ function getAllStarWarsPeople() {
       return Promise.all(promises);
     })
     .then((response) => {
-      //get the rest records - pages 2 through n.
+      // get the rest of records
       people = response.reduce(
         (acc, data) => [...acc, ...data.data.results],
         people
@@ -83,7 +88,6 @@ function getAllStarWarsPeople() {
 function getStarWarsPlanet(url) {
   return axios(url)
     .then((response) => {
-      // collect people from first page
       return response.data;
     })
     .catch((error) => console.log("Planet not found"));

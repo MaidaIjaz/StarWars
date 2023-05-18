@@ -38,15 +38,14 @@ export default function Home(props) {
 
 function getAllStarWarsPeople() {
   let people = [];
-  // first page
+   // collect people from first page
   return axios("https://swapi.dev/api/people/")
-    .then((response) => {
-      // collect people from first page
+    .then((response) => { 
       people = response.data.results;
       return response.data.count;
     })
     .then((count) => {
-      // exclude the first request
+      // Extract total page number
       const numberOfPagesLeft = Math.ceil((count - 1) / 10);
       let promises = [];
       // start at 2 as you already queried the first page
@@ -56,7 +55,7 @@ function getAllStarWarsPeople() {
       return Promise.all(promises);
     })
     .then((response) => {
-      //get the rest records - pages 2 through n.
+      //get the rest records 
       people = response.reduce(
         (acc, data) => [...acc, ...data.data.results],
         people

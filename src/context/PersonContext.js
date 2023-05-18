@@ -28,6 +28,7 @@ function Provider({ children }) {
     [persons]
   );
 
+  // Extract int and comma
   const extractFloat = (str) => {
     return parseFloat(str.replace(/,/g, ""));
   };
@@ -63,8 +64,10 @@ function Provider({ children }) {
 
   const sortPersons = useCallback(
     (order) => {
-      const { column: columnString } = order;
+      const  columnString  = order;
+      // Pick sort type
       const sort = columnString.split(":")[1];
+      // Pick column
       const column = columnString.split(":")[0].toLowerCase().replace(" ", "_");
       const filteredPersonsCopy = [...filteredPersons];
       const POSITIVE_NUMBER = 1;
@@ -93,7 +96,9 @@ function Provider({ children }) {
     },
     [filteredPersons]
   );
+  
 
+  // Set context value
   const contextValue = useMemo(
     () => ({
       persons,

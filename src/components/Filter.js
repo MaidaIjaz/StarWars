@@ -16,14 +16,19 @@ function Filters() {
 
   const { filterPersonsByColumn } = useContext(PersonContext);
   const [columnOptions, setColumnOption] = useState(INITIAL_OPTIONS);
+
+  // Initial filter state
   const [filterState, setFilterState] = useState({
     column: INITIAL_OPTIONS[0],
     operator: "Greater than",
     value: "0",
   });
+
   const { column, operator, value } = filterState;
+  // Keeps track of already done filters
   const [filtersDone, setFiltersDone] = useState([]);
 
+  // Update filter state
   const handleChange = ({ target }) => {
     const { name: targetName, value: targetValue } = target;
     setFilterState((prevState) => ({
@@ -31,21 +36,26 @@ function Filters() {
       [targetName]: targetValue,
     }));
   };
-
+  
+  // Delete filter with given id
   const handleDeleteFilter = ({ target: { id } }) => {
+    // Remove filter with given id
     const attFiltersDone = filtersDone.filter(
       (_filter, index) => Number(index) !== Number(id)
     );
     filterPersonsByColumn(attFiltersDone, true);
 
+    // Update column
     setColumnOption((prevState) => {
       const { column: filterType } = filtersDone[id];
       const attColumnOptions = [filterType, ...prevState];
       return attColumnOptions;
     });
+    // Update done filters
     setFiltersDone(attFiltersDone);
   };
 
+  
   const removeAllFilters = () => {
     setFiltersDone([]);
     setColumnOption(INITIAL_OPTIONS);
@@ -75,6 +85,7 @@ function Filters() {
   return (
     <section>
       <form className="text-white flex flex-items mx-16 my-4 flex-col md:flex-row">
+        {/* Select column */}
         <label htmlFor="column-filter">
           <div className="flex items-center text-black h-12 mx-4 my-4 rounded-md flex-grow bg-yellow-400 hover:bg-yellow-500">
             <select
@@ -94,6 +105,7 @@ function Filters() {
           </div>
         </label>
 
+         {/* Select operator */}
         <label htmlFor="operator-filter">
           <div className="flex items-center text-black h-12 mx-4 my-4 rounded-md flex-grow bg-yellow-400 hover:bg-yellow-500">
             <select
@@ -111,6 +123,7 @@ function Filters() {
           </div>
         </label>
 
+        {/* Select value */}
         <label htmlFor="value-filter">
           <div className="flex items-center text-black h-12 mx-4 my-4 rounded-md flex-grow bg-yellow-400 hover:bg-yellow-500">
             <input
@@ -125,9 +138,11 @@ function Filters() {
           </div>
         </label>
 
+        {/* Apply filter */}
         <button
           className="w-12 rounded-md h-12 p-4 self-center text-black bg-yellow-400 hover:bg-yellow-500"
           type="button"
+          // Disable button if all options are selected
           disabled={columnOptions.length == 0}
           data-testId="button-filter"
           onClick={handleFilter}
@@ -155,8 +170,10 @@ function Filters() {
                   id={index}
                   data-testId="delete-filter"
                 >
+                  {/* Remove filter on text as we need id */}
                   <XMarkIcon className="pointer-events-none" />
                 </button>
+                {/* Display filter details */}
                 <span className="self-center">{`${filterColumn} ${operatorMap[filterOperator]} ${filterValue}`}</span>
               </div>
             );
