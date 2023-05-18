@@ -14,7 +14,7 @@ In this project, I used React, Tailwind CSS, and JavaScript to build the respons
 
 Using SSR and Image components of NextJS provides us with the best performance. Google PageSpeed Insights give the following results:
 
-| ![Performance Score](perf.png?raw=true "Performance Score") |
+| ![Performance Score](public/perf.png?raw=true "Performance Score") |
 |-|
 
 
