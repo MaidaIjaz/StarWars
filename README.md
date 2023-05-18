@@ -1,7 +1,7 @@
 # Star Wars Website
 
 
-In this project, I used React, Tailwind CSS, and JavaScript to build the responsive frontend of Star Wars application. I used **Axios** for API calls. Here is the final link of my [deployment](https://star-wars-maidaijaz.vercel.app/).
+In this project, I used React, Tailwind CSS, and JavaScript to build the responsive frontend of Star Wars application. Here is the final link of my [deployment](https://star-wars-maidaijaz.vercel.app/).
 
 *  Displayed all the characters of Star Wars on the home page.
 *  Implemented **Search** functionality on the characters displayed on home page.
