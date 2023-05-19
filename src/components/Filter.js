@@ -179,7 +179,7 @@ function Filters() {
           })}
 
           <button
-            className="w-12 rounded-md h-12 p-4 mx-2 text-black self-center bg-yellow-400 hover:bg-yellow-500"
+            className="w-12 rounded-md h-12 p-4 mx-2 my-2 text-black self-center bg-yellow-400 hover:bg-yellow-500"
             data-testid="button-remove-filters"
             type="button"
             onClick={removeAllFilters}
