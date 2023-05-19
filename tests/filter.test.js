@@ -28,7 +28,7 @@ describe("Home", () => {
 
   it("Test operator is set properly", () => {
     const sortOption = screen.getAllByRole("combobox");
-    userEvent.selectOptions(sortOption[1], ">");
+    userEvent.selectOptions(sortOption[1], "Greater than");
     expect(screen.getByRole("option", { name: ">" }).selected).toBe(true);
     expect(screen.getByRole("option", { name: "<" }).selected).toBe(false);
   });

@@ -2,6 +2,6 @@ node_modules/
 yarn.lock
 package-lock.json
 /.next/
-
+coverage/
 # misc
 .DS_Store

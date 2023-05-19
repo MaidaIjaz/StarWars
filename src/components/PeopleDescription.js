@@ -15,6 +15,7 @@ const PeopleDescription = ({ people, id, planet, residents }) => {
             height={300}
             width={300}
             objectFit="contain"
+            alt="Person Image"
           />
         </div>
         <div className="w-full ml-10 mt-10 overflow-hidden bg-amazon_blue shadow sm:rounded-lg">
