@@ -10,6 +10,7 @@ In this project, I used JavaScript, React, NextJS, Tailwind CSS, and JavaScript 
 *  Made home page interactive even in the absence of internet.
 *  Used the powerful tools provided by **NextJS** to implement Server-Side Rendering(**SSR**) for better website performance (**99 performance score on Google PageSpeed Insights**).
 * Build a fully responsive frontend of Star Wars using **TailwindCSS** and **React**.
+* Added unit test using **Jest** and **React-testing-library**.
 * Used **Vercel** for the final deployment of application.
 
 For better UI/UX experience I have also added the following functionalities:
@@ -18,6 +19,7 @@ For better UI/UX experience I have also added the following functionalities:
 * Fuzzy search
 * Fast rendering through SSR
 * Mobile and Desktop responsive
+* Unit Testing
 
 Using SSR and Image components of NextJS provides us with the best performance. Google PageSpeed Insights give the following results:
 
@@ -32,6 +34,13 @@ Clone this repository, Navigate to `StarWars-main` folder and Run following comm
 1. ```npm install```
 2. ```npm run dev```
 
-
+# Testing
+To run test using Jest and React-testing-library, use the following comnmand:
+```
+npm run test
+```
+Added basic testing to each component. The coverage report gives the following results:
+| ![Coverage Report](public/testcoverage.png?raw=true "Coverage Report") |
+|-|
 
 > Character Images taken from this repository: https://github.com/vieraboschkova/swapi-gallery.git
