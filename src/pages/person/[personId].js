@@ -23,6 +23,10 @@ export default function PeopleDetail(props) {
     props.starWarsPeople[personId] ?? persons[personId]
   );
 
+  useEffect(() => {
+    setPeople(props.starWarsPeople[personId] ?? persons[personId]);
+  },  [router.query.personId]);
+
   // Extract all residents of current person planet
   const extractResidents = (residents) => {
     let residentArray = [];
