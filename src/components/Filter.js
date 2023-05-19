@@ -36,7 +36,7 @@ function Filters() {
       [targetName]: targetValue,
     }));
   };
-  
+
   // Delete filter with given id
   const handleDeleteFilter = ({ target: { id } }) => {
     // Remove filter with given id
@@ -55,7 +55,6 @@ function Filters() {
     setFiltersDone(attFiltersDone);
   };
 
-  
   const removeAllFilters = () => {
     setFiltersDone([]);
     setColumnOption(INITIAL_OPTIONS);
@@ -92,7 +91,7 @@ function Filters() {
               className="p-2 h-full w-full flex-grow flex-shrink rounded-md focus:outline-none"
               id="column-filter"
               name="column"
-              data-testId="column-filter"
+              data-testid="column-filter"
               defaultValue={column}
               onChange={handleChange}
             >
@@ -105,14 +104,14 @@ function Filters() {
           </div>
         </label>
 
-         {/* Select operator */}
+        {/* Select operator */}
         <label htmlFor="operator-filter">
           <div className="flex items-center text-black h-12 mx-4 my-4 rounded-md flex-grow bg-yellow-400 hover:bg-yellow-500">
             <select
               className="p-2 h-full w-full flex-grow flex-shrink rounded-md focus:outline-none"
               id="operator-filter"
               name="operator"
-              data-testId="comparison-filter"
+              data-testid="comparison-filter"
               value={operator}
               onChange={handleChange}
             >
@@ -130,7 +129,7 @@ function Filters() {
               className="p-2 h-full w-full flex-grow flex-shrink rounded-md focus:outline-none"
               id="value-filter"
               type="number"
-              data-testId="value-filter"
+              data-testid="value-filter"
               value={value}
               name="value"
               onChange={handleChange}
@@ -144,7 +143,7 @@ function Filters() {
           type="button"
           // Disable button if all options are selected
           disabled={columnOptions.length == 0}
-          data-testId="button-filter"
+          data-testid="button-filter"
           onClick={handleFilter}
         >
           <FunnelIcon />
@@ -160,7 +159,7 @@ function Filters() {
             return (
               <div
                 key={index}
-                data-testId="filter"
+                data-testid="filter"
                 className="flex flex-row text-white bg-gray-600 m-1 p-1 rounded-md"
               >
                 <button
@@ -168,7 +167,7 @@ function Filters() {
                   onClick={handleDeleteFilter}
                   type="button"
                   id={index}
-                  data-testId="delete-filter"
+                  data-testid="delete-filter"
                 >
                   {/* Remove filter on text as we need id */}
                   <XMarkIcon className="pointer-events-none" />

@@ -19,7 +19,7 @@ const PeopleDescription = ({ people, id, planet, residents }) => {
         </div>
         <div className="w-full ml-10 mt-10 overflow-hidden bg-amazon_blue shadow sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
-            <h1 className="leading-6 text-white font-medium border-solid border-yellow-400 border-b-2 text-3xl inline">
+            <h1 data-testid="name-heading" className="leading-6 text-white font-medium border-solid border-yellow-400 border-b-2 text-3xl inline">
               {people?.name}
             </h1>
           </div>

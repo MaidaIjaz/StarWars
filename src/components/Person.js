@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { StarIcon } from "@heroicons/react/24/solid";
 
 function Person({
   name,
@@ -29,11 +27,11 @@ function Person({
           loading="lazy"
         />
         {/* h4 is better for SEO */}
-        <h4 className=" text-center my-auto">{name}</h4>
+        <h4 data-testid="person-name" className=" text-center my-auto">{name}</h4>
 
         {/* Upon hover show extra details */}
         {!smallTiles && (
-          <div class="opacity-0 hover:opacity-100  hover:backdrop-blur-md duration-300 absolute inset-0 z-10 flex flex-col justify-center items-center text-2xl text-yellow-400 font-semibold">
+          <div className="opacity-0 hover:opacity-100  hover:backdrop-blur-md duration-300 absolute inset-0 z-10 flex flex-col justify-center items-center text-2xl text-yellow-400 font-semibold">
             <p className="text-md my-1">Height: {height}</p>
             <p className="text-md my-1">Birth Year: {birth_year}</p>
             <p className="text-md my-1"> Mass: {mass}</p>

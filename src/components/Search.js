@@ -28,7 +28,7 @@ function Search() {
         onChange={handleChange}
         value={filterState}
         id="name-filter"
-        data-testId="name-filter"
+        data-testid="name-filter"
         placeholder="Search for a person"
       />
       <MagnifyingGlassIcon className="h-12 p-4" />

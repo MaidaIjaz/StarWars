@@ -10,7 +10,7 @@ const InfoRow = ({ label, text, isWhite = false }) => {
           : "bg-yellow-400 text-star-primary"
       }`}
     >
-      <dt className="text-sm font-medium">{label}</dt>
+      <dt data-testid="row-title" className="text-sm font-medium">{label}</dt>
       <dd className="text-sm font-semibold capitalize ">{text}</dd>
     </div>
   );

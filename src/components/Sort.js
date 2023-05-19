@@ -33,9 +33,8 @@ function Sort() {
         <div className="flex items-center text-black h-12 mx-4 my-4 rounded-md flex-grow bg-yellow-400 hover:bg-yellow-500">
           <select
             className="p-2 h-full w-full flex-grow flex-shrink rounded-l-md focus:outline-none"
-            name="column"
             id="sort-column"
-            data-testId="column-sort"
+            data-testid="column-sort"
             onChange={handleChange}
             value={column}
           > 
